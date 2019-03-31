@@ -6,6 +6,18 @@ package com.payit.problems;
  */
 public class Problem2 {
     public boolean isPalindrome(String value) {
-        return false;
+        int low = 0;
+        int high = value.length();
+
+        while (high > low) {
+            if (Character.toLowerCase(value.charAt(low)) != Character.toLowerCase(value.charAt(high))) {
+                return false;
+            }
+            low += 1;
+            high -= 1;
+        }
+
+        return true;
     }
+
 }
