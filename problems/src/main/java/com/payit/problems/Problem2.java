@@ -7,7 +7,7 @@ package com.payit.problems;
 public class Problem2 {
     public boolean isPalindrome(String value) {
         int low = 0;
-        int high = value.length();
+        int high = value.length()-1;
 
         while (high > low) {
             if (Character.toLowerCase(value.charAt(low)) != Character.toLowerCase(value.charAt(high))) {
