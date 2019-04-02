@@ -1,28 +1,16 @@
 package com.payit.problems;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.payit.problems.models.Customer;
 import com.payit.problems.models.Duplicates;
 
-import com.sun.istack.internal.NotNull;
-import jdk.nashorn.internal.parser.JSONParser;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * We have a list of customers and we are fairly certain
@@ -70,18 +58,41 @@ public class Problem3 {
         return Arrays.asList(customers);
     }
 
+
+    static class CustomerSortingComparator implements Comparator<Customer> {
+
+        @Override
+        public int compare(Customer customer1, Customer customer2) {
+
+            int LastNameCompare = customer1.getLastName().compareTo(customer2.getLastName());
+            int FirstNameCompare = customer1.getFirstName().compareTo(customer2.getFirstName());
+
+            if (LastNameCompare == 0) {
+                return ((FirstNameCompare == 0) ? LastNameCompare : FirstNameCompare);
+            } else {
+                return LastNameCompare;
+            }
+        }
+    }
+
+
+
     public Duplicates findDuplicates() {
-        // Step 1) Load JSON file into a list of customer objects
         List<Customer> customers =  resources();
         Duplicates duplicates= new Duplicates();
+        Collections.sort(customers, new CustomerSortingComparator());
 
+        int partialDuplicate = 0;
+        int fullDuplicate = 0;
 
+        for (int i = 0; i< customers.size()-1; i++){
+             if (customers.get(i).getEmailAddress()==customers.get(i=1).getEmailAddress())
+                 fullDuplicate+=1;
+             else partialDuplicate+=1;
+        }
 
-        // Step 2) Sort your list! (alphabetically, by something...)
-        // This will require a comparator
-
-        // Step 3) Check for duplicates...
-
+        duplicates.setPossibleDuplicates(partialDuplicate);
+        duplicates.setFullDuplicates(fullDuplicate);
 
         return duplicates;
     }
