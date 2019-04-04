@@ -47,9 +47,9 @@ public class Problem3 {
         File file = new File(classLoader.getResource(fileName).getFile());
         Gson gson = new Gson();
         JsonReader reader = null;
-        try{
-            reader= new JsonReader(new FileReader(file));
-        } catch (FileNotFoundException e){
+        try {
+            reader = new JsonReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
@@ -76,24 +76,25 @@ public class Problem3 {
     }
 
 
-
     public Duplicates findDuplicates() {
-        List<Customer> customers =  resources();
-        Duplicates duplicates= new Duplicates();
+        List<Customer> customers = resources();
+        Duplicates duplicates = new Duplicates();
         Collections.sort(customers, new CustomerSortingComparator());
 
-        int partialDuplicate = 0;
+        int possibleDuplicates = 0;
         int fullDuplicate = 0;
 
-        for (int i = 0; i< customers.size()-1; i++){
-             if (customers.get(i).getEmailAddress()==customers.get(i=1).getEmailAddress())
-                 fullDuplicate+=1;
-             else partialDuplicate+=1;
+        for (int i = 0; i < customers.size() - 1; i++) {
+            if (customers.get(i).getFirstName().equals(customers.get(i + 1).getFirstName()) )
+                if (customers.get(i).getLastName().equals(customers.get(i + 1).getLastName())) {
+
+                    if (customers.get(i).getEmailAddress().equals( customers.get(i + 1).getEmailAddress()))
+                        fullDuplicate += 1;
+                    else possibleDuplicates += 1;
+                }
         }
-
-        duplicates.setPossibleDuplicates(partialDuplicate);
+        duplicates.setPossibleDuplicates(possibleDuplicates);
         duplicates.setFullDuplicates(fullDuplicate);
-
         return duplicates;
     }
 }
