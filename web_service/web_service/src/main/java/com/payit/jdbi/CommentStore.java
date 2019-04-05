@@ -7,6 +7,8 @@ import java.util.List;
 public interface CommentStore {
     List<BlogComment> getAllComments();
 
+//    List<BlogComment> getCommentsByPostId();
+
     BlogComment storeBlogComment(BlogComment blogComment);
 
     BlogComment getBlogCommentById(String id);

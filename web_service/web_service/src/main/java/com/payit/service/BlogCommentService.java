@@ -7,6 +7,8 @@ import java.util.List;
 public interface BlogCommentService {
     List<BlogComment> getAllComments();
 
+//    List<BlogComment> getCommentsByPostId();
+
     BlogComment getCommentById(String id);
 
     void deleteComment(String id);

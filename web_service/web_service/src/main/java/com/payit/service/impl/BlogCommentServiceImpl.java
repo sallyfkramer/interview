@@ -16,6 +16,9 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     @Override
     public List<BlogComment> getAllComments() {return commentStore.getAllComments();}
 
+//    @Override
+//    public  List<BlogComment> getCommentsByPostId() {return commentStore.getCommentsByPostId();}
+
     @Override
     public BlogComment getCommentById(String id) {return commentStore.getBlogCommentById(id);}
 

@@ -30,6 +30,12 @@ public class BlogCommentResource {
     public List<BlogComment> getAllComments() {
         return blogCommentService.getAllComments(); }
 
+//    @GET
+//    @Path("/{postID}")
+//    @Timed
+//    public List<BlogComment> getCommentsByPostId(@PathParam("postID") String postID){
+//        return blogCommentService.getCommentsByPostId(); }
+
     @POST
     @Timed
     public BlogComment storeBlogComment(BlogComment blogComment) {return blogCommentService.createComment(blogComment);}
@@ -40,7 +46,7 @@ public class BlogCommentResource {
     public BlogComment getBlogCommentByID(@PathParam("commentID") String commentID) {return blogCommentService.getCommentById(commentID);}
 
     @DELETE
-    @Path("/{commentID")
+    @Path("/{commentID}")
     @Timed
     public void deleteBlogComment(@PathParam("commentID") String commentID) {blogCommentService.getCommentById(commentID);}
 

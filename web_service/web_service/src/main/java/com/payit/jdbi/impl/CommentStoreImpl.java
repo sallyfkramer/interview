@@ -16,6 +16,11 @@ public class CommentStoreImpl implements CommentStore {
         return inMemoryStore.values().stream().collect(Collectors.toList());
     }
 
+//    @Override
+//    public List<BlogComment> getCommentsByPostId(){
+//        return inMemoryStore.values().stream().collect(Collectors.toList());
+//    }
+
     @Override
     public BlogComment storeBlogComment(BlogComment blogComment) {
         inMemoryStore.put(blogComment.getId(), blogComment);
